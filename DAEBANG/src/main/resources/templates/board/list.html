@@ -32,7 +32,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">번호</th>
+          <th scope="col"> </th>
           <th class="text-center" scope="col">제목</th>
           <th class="text-center" scope="col">작성자</th>
           <th class="text-right mx-5" scope="col">작성일</th>
@@ -41,7 +41,7 @@
       <tbody>
         <tr th:each="board : ${boards}">
           <td th:text="${board.id}">글 번호</td>
-          <td class="text-center"><a th:text="${board.title}">제목</a></td>
+          <td class="text-center"><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a></td>
           <td class="text-center"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a></td>
           <td class="text-right" th:text="${#calendars.format(#calendars.createNow())}">작성일</td>
           <!-- <td class="text-right" th:text="${board.created_date}}">작성일</td> -->

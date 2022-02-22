@@ -56,6 +56,18 @@ public class BoardController {
         return "board/form";
     }
 
+    @GetMapping("/view")
+    public String view(Model model, @RequestParam(required = false) Long id) {
+        if(id==null){
+            model.addAttribute("board",new Board());
+        } else {
+            Board board = boardRepository.findById(id).orElse(null);
+            model.addAttribute("board", board);
+        }
+
+        return "board/view";
+    }
+
     @PostMapping("/form")
     public String postForm(@Valid Board board, BindingResult bindingResult, Authentication authentication) {
         boardValidator.validate(board, bindingResult);
