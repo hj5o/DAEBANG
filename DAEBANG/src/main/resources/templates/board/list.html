@@ -20,7 +20,7 @@
 
   <div class="container">
     <h2>게시판</h2>
-    <div>총 건수 : <span th:text="${boards.getTotalElements()}"></span></div>
+    <div>총 게시글 수 : <span th:text="${boards.getTotalElements()}"></span></div>
     <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/board/list}">
       <div class="form-group mx-sm-3 mb-2">
         <label for="searchText" class="sr-only">검색</label>
@@ -39,13 +39,19 @@
         </tr>
       </thead>
       <tbody>
+        <td>공지</td>
+        <td class="text-center"><a th:href="@{/board/community}">자유댓글</a></td>
+        <td class="text-center"><a></a>관리자</td>
+        <td class="text-right"><a></a>언제</td>
         <tr th:each="board : ${boards}">
           <td th:text="${board.id}">글 번호</td>
           <td class="text-center"><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a></td>
-          <td class="text-center"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a></td>
+          <td class="text-center"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a>
+          </td>
           <td class="text-right" th:text="${#calendars.format(#calendars.createNow())}">작성일</td>
           <!-- <td class="text-right" th:text="${board.created_date}}">작성일</td> -->
           <!-- <td class="text-right" th:text="${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}">작성일</td> -->
+          <!-- <td th:text="${board.created+Date} ? ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')} : ${board.created_Date}">작성일</td> -->
         </tr>
       </tbody>
     </table>
@@ -53,7 +59,7 @@
       <ul class="pagination justify-content-center">
         <li class="page-item" th:classappend="${1 == boards.getPageable.getPageNumber + 1} ? 'disabled'">
           <a class="page-link" href="#" th:href="@{/board/list(page=${boards.getPageable.getPageNumber - 1})}"
-            tabindex="-1" aria-disabled="true">Previous</a>
+            tabindex="-1" aria-disabled="true">＜</a>
         </li>
         <li class="page-item" th:classappend="${i == boards.getPageable.getPageNumber + 1} ? 'disabled'"
           th:each="i : ${#numbers.sequence(startPage, endPage)}">
@@ -61,7 +67,7 @@
         </li>
         <li class="page-item"
           th:classappend="${boards.getTotalPages() == boards.getPageable.getPageNumber + 1} ? 'disabled'">
-          <a class="page-link" href="#" th:href="@{/board/list(page=${boards.getPageable.getPageNumber + 1})}">Next</a>
+          <a class="page-link" href="#" th:href="@{/board/list(page=${boards.getPageable.getPageNumber + 1})}">＞</a>
         </li>
       </ul>
     </nav>

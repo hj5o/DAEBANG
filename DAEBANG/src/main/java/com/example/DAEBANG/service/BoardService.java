@@ -16,7 +16,6 @@ public class BoardService {
     @Autowired
     private UserRepository userRepository;
 
-
     public Board save(String username, Board board) {
         User user = userRepository.findByUsername(username);
         board.setUser(user);
