@@ -18,14 +18,15 @@
   </nav>
 
   <div class="container">
-    <h2>게시판</h2>
+    <h2>게시판</h2> <br>
     <form action="#" th:action="@{/board/form}" th:object="${board}" method="post">
       <input type="hidden" th:field="*{id}">
       <div class="form-group">
-        <h4><td class="text-center"><a th:text="${board.title}"></a></td></h4>
-        <td class="text-center"><a th:text="${board.user.username}">작성자</a></td>
-        <p>내용</p>
-        <td class="text-center"><a th:text="${board.content}"></a></td>
+        <h4><a th:text="${board.title}">제목</a></h4>
+        <a th:text="${board.user.username}">작성자</a> | <a class="text-right" th:text="${board.created_date != null} ? ${#temporals.format(board.created_date,'yy.MM.dd HH:dd')} : ${#temporals.format(board.modified_date,'yy.MM.dd HH:dd')}"> 작성일</a>
+        <br><br>
+        <h4 th:text="${board.content}"></h4>
+        <br><br>
         </div>
       </div>
     </form>

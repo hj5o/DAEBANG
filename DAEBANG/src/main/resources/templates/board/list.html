@@ -33,23 +33,23 @@
       <thead>
         <tr>
           <th scope="col"> </th>
-          <th class="text-center" scope="col">제목</th>
-          <th class="text-right" scope="col">작성자</th>
+          <th class="text-left" scope="col">제목</th>
+          <th class="text-left" scope="col">작성자</th>
           <th class="text-right mx-5" scope="col">최근 작성일</th>
         </tr>
       </thead>
       <tbody>
-        <td>공지</td>
-        <td class="text-center"><a th:href="@{/board/community}">자유댓글</a></td>
-        <td class="text-right"><a></a>관리자</td>
-        <td class="text-right"><a></a>작성일</td>
+        <td>공지사항</td>
+        <td class="text-left"><a th:href="@{/board/community}">자유로운 댓글 게시판</a></td>
+        <td class="text-left"><a></a>관리자</td>
+        <td class="text-right"><a></a>22.02.26</td>
         <tr th:each="board : ${boards}">
           <td th:text="${board.id}">글 번호</td>
-          <td class="text-center"><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a></td>
-          <td class="text-right"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a>
+          <td class="text-left"><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a></td>
+          <td class="text-left"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a>
           </td>
           <td class="text-right"><a
-              th:text="${board.created_date != null} ? ${#temporals.format(board.created_date,'yyyy-MM-dd HH:mm')} : ${#temporals.format(board.modified_date,'yyyy-MM-dd HH:mm')}">작성일</a>
+              th:text="${board.created_date != null} ? ${#temporals.format(board.created_date,'yy.MM.dd')} : ${#temporals.format(board.modified_date,'yy.MM.dd')}">작성일</a>
           </td>
           <!-- <td class="text-right" ></td> -->
           <!-- <span th:unless="${board.created_date != null}" th:text="${board.created_date} ? ${#temporals.format(board.created_date,'yyyy-MM-dd HH:mm')} : ${board.created_date}"></span> -->

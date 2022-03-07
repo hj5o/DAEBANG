@@ -9,8 +9,11 @@ body {
   .navbar-defalut {
     background-color: rgb(218, 57, 57);
   }
+  .com {
+    margin: 50px;
+  }
 
-/* footer {
+footer {
     width: 100%;
     height: 159px;
     bottom: 0px;
@@ -18,5 +21,5 @@ body {
   }
   .text {
     margin-left: 80px;
-  } */
+  } 
   
