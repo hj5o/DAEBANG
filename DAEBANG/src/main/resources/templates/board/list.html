@@ -15,7 +15,7 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')">
-    
+
   </nav>
 
   <div class="container">
@@ -34,24 +34,28 @@
         <tr>
           <th scope="col"> </th>
           <th class="text-center" scope="col">제목</th>
-          <th class="text-center" scope="col">작성자</th>
-          <th class="text-right mx-5" scope="col">작성일</th>
+          <th class="text-right" scope="col">작성자</th>
+          <th class="text-right mx-5" scope="col">최근 작성일</th>
         </tr>
       </thead>
       <tbody>
         <td>공지</td>
         <td class="text-center"><a th:href="@{/board/community}">자유댓글</a></td>
-        <td class="text-center"><a></a>관리자</td>
-        <td class="text-right"><a></a>언제</td>
+        <td class="text-right"><a></a>관리자</td>
+        <td class="text-right"><a></a>작성일</td>
         <tr th:each="board : ${boards}">
           <td th:text="${board.id}">글 번호</td>
           <td class="text-center"><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a></td>
-          <td class="text-center"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a>
+          <td class="text-right"><a th:text="${board.user.username}" th:href="@{/board/form(id=${board.id})}">작성자</a>
           </td>
-          <td class="text-right" th:text="${#calendars.format(#calendars.createNow())}">작성일</td>
-          <!-- <td class="text-right" th:text="${board.created_date}}">작성일</td> -->
-          <!-- <td class="text-right" th:text="${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}">작성일</td> -->
-          <!-- <td th:text="${board.created+Date} ? ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')} : ${board.created_Date}">작성일</td> -->
+          <td class="text-right"><a
+              th:text="${board.created_date != null} ? ${#temporals.format(board.created_date,'yyyy-MM-dd HH:mm')} : ${#temporals.format(board.modified_date,'yyyy-MM-dd HH:mm')}">작성일</a>
+          </td>
+          <!-- <td class="text-right" ></td> -->
+          <!-- <span th:unless="${board.created_date != null}" th:text="${board.created_date} ? ${#temporals.format(board.created_date,'yyyy-MM-dd HH:mm')} : ${board.created_date}"></span> -->
+          <!-- <td class="text-right" th:text="${board.created_date} ? ${#temporals.format(board.created_date,'yyyy-MM-dd HH:mm')} : ${board.created_date}"></td> -->
+          <!-- <td th:if="${not #strings.isEmpty(board.created_date)}" th:text="${board.modified_date} ? ${#temporals.format(board.modified_date,'yyyy-MM-dd HH:mm')} : ${board.modified_date}"></td> -->
+
         </tr>
       </tbody>
     </table>

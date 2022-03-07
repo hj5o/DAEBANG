@@ -47,7 +47,6 @@ class BoardApiController {
         return repository.findById(id)
                 .map(Board -> {
                     Board.setTitle(newBoard.getTitle());
-                    Board.setCreated_date(newBoard.getCreated_date());
                     Board.setContent(newBoard.getContent());
                     return repository.save(Board);
                 })
